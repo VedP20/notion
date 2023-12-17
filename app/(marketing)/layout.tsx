@@ -1,11 +1,10 @@
-import Footer from "./-components/footer";
 import Navbar from "./-components/navbar";
 
 const MarketingLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="h-full flex flex-col">
+    <div className="dark:bg-[#1F1F1F] min-h-screen">
       <Navbar />
-      <main className="mt-32 h-full">{children}</main>
+      <main className="pt-32 h-full">{children}</main>
     </div>
   );
 };

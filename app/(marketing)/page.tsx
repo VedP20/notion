@@ -1,17 +1,11 @@
-import Image from "next/image";
-import { Button } from "@/components/ui/button";
-import Heading from "./-components/heading";
-import Heroes from "./-components/heroes";
-import Footer from "./-components/footer";
+import Heading from "./_components/heading";
+import Heroes from "./_components/heroes";
 
 const MarketingPage = () => {
   return (
-    <div className="flex flex-col h-full">
-      <div className="flex flex-col justify-center items-center md:justify-start text-center gap-y-4 px-6 mb-10 h-full">
-        <Heading />
-        <Heroes />
-      </div>
-      <Footer />
+    <div className="flex flex-col items-center justify-center flex-1">
+      <Heading />
+      <Heroes />
     </div>
   );
 };

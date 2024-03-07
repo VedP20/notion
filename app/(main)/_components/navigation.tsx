@@ -1,17 +1,28 @@
 "use client";
 
 import React, { ElementRef, useEffect, useRef, useState } from "react";
-import { ChevronLeft, MenuIcon } from "lucide-react";
+import {
+  ChevronLeft,
+  MenuIcon,
+  PlusCircle,
+  Search,
+  Settings,
+} from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useMediaQuery } from "usehooks-ts";
 import { cn } from "@/lib/utils";
 import UserItems from "./user-items/page";
+import { useMutation } from "convex/react";
+import { api } from "@/convex/_generated/api";
+import { Item } from "./item/page";
+import { toast } from "sonner";
+import DocumentsList from "./documents-list/page";
 
 const Navigation = () => {
   const pathname = usePathname();
   const isMobile = useMediaQuery("(max-width: 768px");
 
-  console.log(isMobile);
+  const create = useMutation(api.documents.create);
 
   const isResizingRef = useRef(false);
   const sidebarRef = useRef<ElementRef<"aside">>(null);
@@ -103,6 +114,16 @@ const Navigation = () => {
     setTimeout(() => setIsResetting(false), 300);
   };
 
+  const handleCreate = () => {
+    const promise = create({ title: "Untitled" });
+
+    toast.promise(promise, {
+      loading: "Creating a new note...",
+      success: "created successfully!",
+      error: "Failed to create a new note",
+    });
+  };
+
   return (
     <>
       <aside
@@ -121,11 +142,18 @@ const Navigation = () => {
             isMobile && "opacity-100"
           )}
         >
-          <ChevronLeft color="black" size={24} className="" />
+          <ChevronLeft size={24} className="text-muted-foreground" />
         </div>
 
-        <div className="mt-1">
+        <div className="">
           <UserItems />
+          <Item label="Settings" icon={Settings} onClick={() => {}} />
+          <Item isSearch label="Search" icon={Search} onClick={() => {}} />
+          <Item onClick={handleCreate} label="New Page" icon={PlusCircle} />
+        </div>
+
+        <div className=" mt-4">
+          <DocumentsList />
         </div>
 
         <div

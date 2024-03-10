@@ -4,9 +4,12 @@ import React, { ElementRef, useEffect, useRef, useState } from "react";
 import {
   ChevronLeft,
   MenuIcon,
+  Plus,
   PlusCircle,
   Search,
   Settings,
+  Trash,
+  Trash2,
 } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useMediaQuery } from "usehooks-ts";
@@ -17,6 +20,12 @@ import { api } from "@/convex/_generated/api";
 import { Item } from "./item/page";
 import { toast } from "sonner";
 import DocumentsList from "./documents-list/page";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import TrashBox from "./trash-box/page";
 
 const Navigation = () => {
   const pathname = usePathname();
@@ -154,6 +163,19 @@ const Navigation = () => {
 
         <div className=" mt-4">
           <DocumentsList />
+          <Item label="Add a page" onClick={handleCreate} icon={Plus} />
+
+          <Popover>
+            <PopoverTrigger className="w-full mt-4">
+              <Item label="Trash" onClick={() => {}} icon={Trash} />
+            </PopoverTrigger>
+            <PopoverContent
+              side={isMobile ? "bottom" : "right"}
+              className="p-0 w-72"
+            >
+              <TrashBox />
+            </PopoverContent>
+          </Popover>
         </div>
 
         <div

@@ -6,7 +6,7 @@ import { PlusCircle } from "lucide-react";
 
 import { useUser } from "@clerk/clerk-react";
 import { Button } from "@/components/ui/button";
-import { useMutation, useQuery } from "convex/react";
+import { useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { toast } from "sonner";
 

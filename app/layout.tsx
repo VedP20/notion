@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { ThemeProvider } from "../components/ui/providers/theme-provider";
-import { ConvexClientProvider } from "@/components/ui/providers/convex-provider";
+import { ThemeProvider } from "../components/providers/theme-provider";
+import { ConvexClientProvider } from "@/components/providers/convex-provider";
 import { Toaster } from "sonner";
 import "./globals.css";
-import { ModalProvider } from "@/components/ui/providers/modal-provider";
+import { ModalProvider } from "@/components/providers/modal-provider";
+import { EdgeStoreProvider } from "./lib/edgestore";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -36,17 +37,19 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
         <ConvexClientProvider>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-            storageKey="Jotion-theme-2"
-          >
-            <Toaster />
-            <ModalProvider />
-            {children}
-          </ThemeProvider>
+          <EdgeStoreProvider>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+              storageKey="Jotion-theme-2"
+            >
+              <ModalProvider />
+              <Toaster />
+              {children}
+            </ThemeProvider>
+          </EdgeStoreProvider>
         </ConvexClientProvider>
       </body>
     </html>

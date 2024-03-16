@@ -1,8 +1,8 @@
+import React from "react";
 import { Dialog, DialogContent, DialogHeader } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
 import { ModeToggle } from "@/components/ui/mode-toggle";
 import { useSettings } from "@/hooks/use-settings";
-import React from "react";
 
 const SettingsModal = () => {
   const settings = useSettings();

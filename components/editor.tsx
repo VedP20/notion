@@ -41,7 +41,7 @@ const Editor = ({ onChange, initialContent, editable }: EdiotrProps) => {
   return (
     <BlockNoteView
       editor={editor}
-      editable
+      editable={editable}
       onChange={() => {
         // Saves the document JSON to state.
         // setBlocks(editor.document);
